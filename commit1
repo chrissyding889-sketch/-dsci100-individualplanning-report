@@ -1,0 +1,142 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "a7c70663-ceca-4550-a638-b1c6ac893ac9",
+   "metadata": {},
+   "source": [
+    "# DSCI 100: Individual Planning Report\n",
+    "**Student:** [Chrissy Ding]  \n",
+    "**Date:** 2025-11-14"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "91dfadda-6890-46d1-9483-a77ba6351a66",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "── \u001b[1mAttaching core tidyverse packages\u001b[22m ──────────────────────── tidyverse 2.0.0 ──\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mdplyr    \u001b[39m 1.1.4     \u001b[32m✔\u001b[39m \u001b[34mreadr    \u001b[39m 2.1.5\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mforcats  \u001b[39m 1.0.0     \u001b[32m✔\u001b[39m \u001b[34mstringr  \u001b[39m 1.5.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mggplot2  \u001b[39m 3.5.1     \u001b[32m✔\u001b[39m \u001b[34mtibble   \u001b[39m 3.2.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mlubridate\u001b[39m 1.9.3     \u001b[32m✔\u001b[39m \u001b[34mtidyr    \u001b[39m 1.3.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mpurrr    \u001b[39m 1.0.2     \n",
+      "── \u001b[1mConflicts\u001b[22m ────────────────────────────────────────── tidyverse_conflicts() ──\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mdplyr\u001b[39m::\u001b[32mfilter()\u001b[39m masks \u001b[34mstats\u001b[39m::filter()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mdplyr\u001b[39m::\u001b[32mlag()\u001b[39m    masks \u001b[34mstats\u001b[39m::lag()\n",
+      "\u001b[36mℹ\u001b[39m Use the conflicted package (\u001b[3m\u001b[34m<http://conflicted.r-lib.org/>\u001b[39m\u001b[23m) to force all conflicts to become errors\n",
+      "── \u001b[1mAttaching packages\u001b[22m ────────────────────────────────────── tidymodels 1.1.1 ──\n",
+      "\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mbroom       \u001b[39m 1.0.6     \u001b[32m✔\u001b[39m \u001b[34mrsample     \u001b[39m 1.2.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mdials       \u001b[39m 1.3.0     \u001b[32m✔\u001b[39m \u001b[34mtune        \u001b[39m 1.1.2\n",
+      "\u001b[32m✔\u001b[39m \u001b[34minfer       \u001b[39m 1.0.7     \u001b[32m✔\u001b[39m \u001b[34mworkflows   \u001b[39m 1.1.4\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mmodeldata   \u001b[39m 1.4.0     \u001b[32m✔\u001b[39m \u001b[34mworkflowsets\u001b[39m 1.0.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mparsnip     \u001b[39m 1.2.1     \u001b[32m✔\u001b[39m \u001b[34myardstick   \u001b[39m 1.3.1\n",
+      "\u001b[32m✔\u001b[39m \u001b[34mrecipes     \u001b[39m 1.1.0     \n",
+      "\n",
+      "── \u001b[1mConflicts\u001b[22m ───────────────────────────────────────── tidymodels_conflicts() ──\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mscales\u001b[39m::\u001b[32mdiscard()\u001b[39m masks \u001b[34mpurrr\u001b[39m::discard()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mdplyr\u001b[39m::\u001b[32mfilter()\u001b[39m   masks \u001b[34mstats\u001b[39m::filter()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mrecipes\u001b[39m::\u001b[32mfixed()\u001b[39m  masks \u001b[34mstringr\u001b[39m::fixed()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mdplyr\u001b[39m::\u001b[32mlag()\u001b[39m      masks \u001b[34mstats\u001b[39m::lag()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34myardstick\u001b[39m::\u001b[32mspec()\u001b[39m masks \u001b[34mreadr\u001b[39m::spec()\n",
+      "\u001b[31m✖\u001b[39m \u001b[34mrecipes\u001b[39m::\u001b[32mstep()\u001b[39m   masks \u001b[34mstats\u001b[39m::step()\n",
+      "\u001b[34m•\u001b[39m Use suppressPackageStartupMessages() to eliminate package startup messages\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Load necessary libraries\n",
+    "library(tidyverse)\n",
+    "library(tidymodels)\n",
+    "library(repr)\n",
+    "\n",
+    "# Optional: display options\n",
+    "options(repr.matrix.max.rows = 6)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "400fce9f-5b4d-40b4-b878-a1b13332eabd",
+   "metadata": {},
+   "source": [
+    " Placeholder for data loading\n",
+    " Uncomment and use when ready\n",
+    " players <- read_csv(\"players.csv\")\n",
+    " sessions <- read_csv(\"sessions.csv\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6d09c6b8-8cdf-49f4-9445-24e1ff0493ee",
+   "metadata": {},
+   "source": [
+    "## 1. Data Description\n",
+    "- Placeholder for descriptive summary of players.csv and sessions.csv\n",
+    "- Number of observations, variables, variable types, potential issues"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "227d1f14-d4b3-48b1-a853-b66549e7f592",
+   "metadata": {},
+   "source": [
+    "## 2. Questions\n",
+    "- Broad question: [to fill later]\n",
+    "- Specific question: [to fill later]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ffed6b31-01d1-47fe-8c2c-7346fe8b71ab",
+   "metadata": {},
+   "source": [
+    "## 3. Exploratory Data Analysis\n",
+    "- Placeholder for summary statistics\n",
+    "- Placeholder for visualizations"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "64b90b2c-cf80-4c7f-afbb-682bfb884586",
+   "metadata": {},
+   "source": [
+    "## 4. Methods and Plan\n",
+    "- Placeholder for proposed method\n",
+    "- Reasoning why this method is appropriate"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "254d941e-5c3b-4201-a93d-68205234b6d4",
+   "metadata": {},
+   "source": [
+    "## 5. GitHub Repository\n",
+    "- Placeholder for GitHub link"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "R",
+   "language": "R",
+   "name": "ir"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "4.3.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
